@@ -1,17 +1,32 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, getTestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AppComponent } from './app.component';
+import { UsersService } from  './users.service'
+import { User } from './user';
 
 describe('AppComponent', () => {
+
+  let injector: TestBed;
+  let userService: UsersService;
+  let httpMock: HttpTestingController;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule
       ],
       declarations: [
         AppComponent
       ],
+      providers: [
+        UsersService
+      ],
     }).compileComponents();
+
+    injector = getTestBed();
+    userService = injector.get(UsersService);
   }));
 
   it('should create the app', () => {
