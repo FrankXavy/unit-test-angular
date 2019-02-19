@@ -252,6 +252,7 @@ describe('Tests from UsersService', ()=>{
             }
           );
 
+
           const req = httpMock.expectOne(`${userService.path}/1`);
           expect(req.request.method).toBe("DELETE");
           expect(req.request.url).toBe('http://jsonplaceholder.typicode.com/users/1');
