@@ -3,6 +3,8 @@ import { Calculator} from './calculator'
 import { UsersService } from  './users.service'
 import { User } from './user';
 
+import { Person} from './person';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,11 +15,21 @@ export class AppComponent {
   title = 'unit-test-angular';
   user = new User();
 
+  person: Person;
+
 
   constructor(
     private _usersService: UsersService,
 
-  ){}
+  ){
+    this.person = new Person(
+      'Frank',
+      'Flores',
+      34,
+      78,
+      1.76
+    );
+  }
 
   ngOnInit(){
     //let calculator = new Calculator();
