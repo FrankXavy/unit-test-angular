@@ -5,10 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersService } from './users.service';
+import { AuthInterceptor } from './auth.interceptor';
+import { AuthService } from './auth.service';
+import { UserRowComponent } from './user-row/user-row.component';
 import { PersonRowComponent } from './person-row/person-row.component';
 
 @NgModule({
   declarations: [
+    AppComponent,
+    UserRowComponent
     AppComponent,
     PersonRowComponent
     ],
@@ -18,7 +23,12 @@ import { PersonRowComponent } from './person-row/person-row.component';
     HttpClientModule
   ],
   providers: [
-    UsersService
+    UsersService, AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

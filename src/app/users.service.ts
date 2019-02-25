@@ -15,7 +15,9 @@ path: string = 'http://jsonplaceholder.typicode.com/users';
     private adapter: UserAdapter) { }
 
   getUser(id: number): Observable<User>{
-    return this.http.get<User>(`${this.path}/${id}`)
+    return this.http.get<User>(`${this.path}/${id}`,
+    this.makeOptions()
+    )
     .pipe(map((data: User)=> this.adapter.adapt(data)));
   }
 
@@ -35,5 +37,11 @@ path: string = 'http://jsonplaceholder.typicode.com/users';
   deleteUser(user: User): Observable<any>{
     let id = user.id;
     return this.http.delete(`${this.path}/${id}`)
+  }
+
+  makeOptions(){
+    return {
+                 headers: new HttpHeaders().set('API-TOKEN', '123')
+               }
   }
 }
