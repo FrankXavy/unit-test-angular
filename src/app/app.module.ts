@@ -9,13 +9,15 @@ import { AuthInterceptor } from './auth.interceptor';
 import { AuthService } from './auth.service';
 import { UserRowComponent } from './user-row/user-row.component';
 import { PersonRowComponent } from './person-row/person-row.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRowComponent
     AppComponent,
-    PersonRowComponent
+    PersonRowComponent,
+    UserListComponent
     ],
   imports: [
     BrowserModule,
