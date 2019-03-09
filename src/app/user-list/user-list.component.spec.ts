@@ -4,6 +4,8 @@ import { DebugElement } from '@angular/core';
 
 import { UserListComponent } from './user-list.component';
 import { UserRowComponent } from './../user-row/user-row.component';
+import { UsersService } from './../users.service';
+import { MockUsersServie } from './../users.service.mock';
 
 
 describe('UserListComponent', () => {
@@ -12,7 +14,11 @@ describe('UserListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserListComponent , UserRowComponent]
+      declarations: [ UserListComponent , UserRowComponent],
+      providers: [
+        {provide: UsersService, useClass: MockUsersServie}
+        
+      ]
     })
     .compileComponents();
   }));
@@ -24,7 +30,16 @@ describe('UserListComponent', () => {
   });
 
   it('should create', () => {
+    console.log(component.users);
     expect(component).toBeTruthy();
+  });
+
+  it('should be lenght equals 3', () =>{
+    expect(component.users.length).toEqual(3);
+  });
+
+  it('should selectedUser be first item of the array', () => {
+    expect(component.selectedUser.name).toEqual('Leanne Graham');
   });
 
   it('should have an user-row', ()=>{
@@ -37,6 +52,6 @@ describe('UserListComponent', () => {
     button.triggerEventHandler('click', null);
     fixture.detectChanges();
 
-    expect(component.selectedUser.name).toBe('valentina');
+    expect(component.selectedUser.name).toBe('Leanne Graham');
   });
 });

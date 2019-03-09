@@ -14,6 +14,11 @@ path: string = 'http://jsonplaceholder.typicode.com/users';
     private http: HttpClient,
     private adapter: UserAdapter) { }
 
+  getAllUsers(): Observable<User[]>{
+    return this.http.get<User[]>(`${this.path}`,
+    this.makeOptions())
+  }
+
   getUser(id: number): Observable<User>{
     return this.http.get<User>(`${this.path}/${id}`,
     this.makeOptions()
