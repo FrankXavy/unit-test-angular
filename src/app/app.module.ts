@@ -10,6 +10,8 @@ import { AuthService } from './auth.service';
 import { UserRowComponent } from './user-row/user-row.component';
 import { PersonRowComponent } from './person-row/person-row.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { FormSkuComponent } from './form-sku/form-sku.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -17,12 +19,15 @@ import { UserListComponent } from './user-list/user-list.component';
     UserRowComponent,
     AppComponent,
     PersonRowComponent,
-    UserListComponent
+    UserListComponent,
+    FormSkuComponent
     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsersService, AuthService,

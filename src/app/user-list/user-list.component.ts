@@ -11,6 +11,7 @@ export class UserListComponent implements OnInit {
 
   users: User[] = [];
   selectedUser: User;
+  errorMessage = '';
 
   constructor(
     private usersService: UsersService
@@ -22,6 +23,7 @@ export class UserListComponent implements OnInit {
    }
 
   ngOnInit() {
+    debugger;
     this.usersService.getAllUsers()
     .subscribe(data =>{
       this.users = data;
@@ -29,12 +31,28 @@ export class UserListComponent implements OnInit {
     },
     error =>{
       this.users =[];
+      this.selectedUser = new User();
+      this.errorMessage = error.toString();
       console.log('ERROR: '+error);
     });
   }
 
   selected(user: User){
    this.selectedUser = user;
+  }
+
+  getUser(id:number){
+    this.usersService.getUser(id)
+      .subscribe(data =>{
+        this.users[0] = data;
+        this.selectedUser = data;
+    },
+        error =>{
+          this.users =[];
+          this.selectedUser = new User();
+          this.errorMessage = error.toString();
+          console.log('ERROR: '+error);
+        })
   }
 
 }

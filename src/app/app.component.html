@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div style="text-align:center" [hidden]="true">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -8,7 +8,7 @@
   
 </div>
 <h2>Here are some links to help you start: </h2>
-<ul>
+<ul [hidden]="true">
   <li>
     <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
   </li>
@@ -21,5 +21,6 @@
 </ul>
 <!--<app-person-row [person]="person"></app-person-row>-->
 <h3>Aqui van los usuarios:</h3>
-<app-user-list></app-user-list>
+<app-user-list [hidden]="true"></app-user-list>
+<app-form-sku></app-form-sku>
 <router-outlet></router-outlet>
