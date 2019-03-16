@@ -63,8 +63,7 @@ describe('FormSkuComponent', () => {
 
   });
 
-  describe('tet for events en html', ()=>{
-
+  describe('tet for events in template html', ()=>{
 
     it('should show an error in template: invalidSku', async(()=>{
       let input = fixture.debugElement.query(By.css('input#skuInput')).nativeElement;
@@ -81,6 +80,23 @@ describe('FormSkuComponent', () => {
         })
 
     }));
+
+    it('should show an error in template: required', async(()=>{
+      let input = fixture.debugElement.query(By.css('input#skuInput')).nativeElement;
+      input.value = '';
+      input.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+      fixture.whenStable()
+        .then(()=>{
+          let debug: HTMLElement = fixture.nativeElement;
+          let elements = debug.querySelectorAll('.ui.message');
+          console.log(elements);
+          expect(elements.length).toEqual(1);
+          expect(elements[0].innerHTML.trim()).toEqual('SKU is required');
+        })
+
+    }));
+
   })
 
 });

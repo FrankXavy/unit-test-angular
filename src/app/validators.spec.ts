@@ -17,5 +17,12 @@ describe('test for validators', ()=>{
       expect(result.invalidSku).toBeDefined();
       expect(result.invalidSku).toBeTruthy();
     });
+
+    it('should return null for empty', ()=>{
+      let formControl = new FormControl();
+      formControl.setValue('');
+      let result = MyValidators.skuValidate(formControl);
+      expect(result).toBeNull();
+    });
   })
 })
